@@ -31,31 +31,25 @@ Game Roulette allows users to explore backlogged games in their catalogue and ex
 
 ![Design image](designpic.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+The user will interact directly by supplying their login information and their SteamID (once their account has been created.) This will give them access to a "save state" of their tagged lists, and allow them to begin the roulette. This will display a spinning wheel that will randomly select a game and allow the user to tag the game, thus removing it from the wheel. 
+On the start page, the user can see progress bars of sorted lists from other users. 
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Gathering and sorting games queried from SteamAPI
+- Selecting and presenting a game at random
+- Storing tagged lists of game objects to be called/organized and displayed globally
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - This will be used to build the core logic of the three pages- defining elements, where they are and what they do.
+- **CSS** - This will be used to stylize the site and make it visually pleasing. The core use here will be color coding the tags to ensure that the user can quickly understand the purpose of each button/navigate the program easily
+- **React** - This will be used to track user inputs and update the game lists with tags, adding and removing them from tag lists, and creating an interactive, responsive roulette wheel/tagging system to keep it separate from the core structure of the site. 
+- **Service** - This will be used to determine the particular endpoints through which the server can be accessed, particularly to send "tag" and "get list" requests aside from the "login" and "getID" endpoints. 
+- **DB/Login** - This will be used to authenticate users with a simple username and password so only the correct user can sort their lists. This will remember which users owned which data. 
+- **WebSocket** - This will be used to automatically update global list data to provide progress bars of other's lists to scroll past, so the current user can see the stats of other users. 
 
 ## 🚀 AWS deliverable
 
