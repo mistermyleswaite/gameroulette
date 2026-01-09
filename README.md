@@ -17,15 +17,15 @@ Game Roulette is a webapp that allows the user to create a list of games from an
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Game Roulette allows users to explore backlogged games in their catalogue and expand their horizons to games they may not have considered before. Rather than encouraging players to spend MORE money, Game Roulette aims to inspire players to find value in what they already have, and tailor their personal taste accordingly. 
+Game Roulette allows users to explore backlogged games in their catalogue and expand their horizons to games they may not have considered before. Rather than encouraging players to spend _MORE_ money, Game Roulette aims to inspire players to find value in what they already have, and tailor their personal taste accordingly. 
 
 ### Design
 
@@ -47,7 +47,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - This will be used to build the core logic of the three pages- defining elements, where they are and what they do.
 - **CSS** - This will be used to stylize the site and make it visually pleasing. The core use here will be color coding the tags to ensure that the user can quickly understand the purpose of each button/navigate the program easily
 - **React** - This will be used to track user inputs and update the game lists with tags, adding and removing them from tag lists, and creating an interactive, responsive roulette wheel/tagging system to keep it separate from the core structure of the site. 
-- **Service** - This will be used to determine the particular endpoints through which the server can be accessed, particularly to send "tag" and "get list" requests aside from the "login" and "getID" endpoints. 
+- **Service** - This will be used to determine the particular endpoints through which the server can be accessed, particularly to send `tag` and `get_list` requests aside from the `login` and `get_id` endpoints. 
 - **DB/Login** - This will be used to authenticate users with a simple username and password so only the correct user can sort their lists. This will remember which users owned which data. 
 - **WebSocket** - This will be used to automatically update global list data to provide progress bars of other's lists to scroll past, so the current user can see the stats of other users. 
 
