@@ -61,10 +61,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Added lists.html, sort.html, and about.html
+- [x] **Proper HTML element usage** - Proper use of lists, headers, navs, etc.
+- [x] **Links** - Each page has a link to every other page, and the about page has a link to my YouTube channel and an embed of my favorite song.
+- [x] **Text** - I used text to indicate what elements will be in which places.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
