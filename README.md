@@ -65,11 +65,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Proper HTML element usage** - Proper use of lists, headers, navs, etc.
 - [x] **Links** - Each page has a link to every other page, and the about page has a link to my YouTube channel and an embed of my favorite song.
 - [x] **Text** - I used text to indicate what elements will be in which places.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **3rd party API placeholder** - Placeholders for SteamAPI in place
+- [x] **Images** - AboutMe profile pic and GameSort icon placeholders in place
+- [x] **Login placeholder** - Login boxes available on homepage and profile page
+- [x] **DB data placeholder** - Lists.html contains lists with placeholders for DB info (pulling list info to display)
+- [x] **WebSocket placeholder** - Home page (later to be added to other pages) has a placeholder for a scrolling box of tables that contain other users info with displayname and sorting progress bar.
 
 ## 🚀 CSS deliverable
 
