@@ -11,23 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <img src="/images/cute.jpg" width=100em height=10em></img>
     <header>
-        <div id='titlebanner'><h1>GameSort</h1></div>
-        <button type="button" id="menu">burgermenu</button>
+        <img id='icon' src="/images/cute.jpg" width=100em height=100em></img>
+        <div id='titlebanner'><h1>Game Sort</h1></div>
     </header>
-    <nav id='sidebar'>
+    <button type="button" id="burger">o</button>
+    <div class='container'>
+      <nav class='sidebar'>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sort.html">Sort</a></li>
-            <li><a href="lists.html">Lists</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="profile.html">Profile</a></li>
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="sort.html">SORT</a></li>
+            <li><a href="lists.html">LISTS</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="profile.html">PROFILE</a></li>
             <li><button type="button" id="logout">logout</button><li>
           </ul>
-    </nav>
-    <hr/>
-    <main>  
+      </nav>
+      <main class='content'>  
         <p>Enter your account information to login or register.</p>
         <form method="get" action="sort.html">
           <div>
@@ -38,12 +38,13 @@
           </div>
           <button type="submit">Login</button>
           <button type="register">Register</button>
-        </form>  
-      <hr />
+        </form>
+      </main>
+    </div>  
       <footer>
         <p>Author: Myles Ruff</p>
         <a href="https://www.youtube.com/@myolts">View my awesome stupid channel</a>
         <a href="https://github.com/mistermyleswaite/gameroulette">GitHub</a>
       </footer>
-  </body>
+    </body>
 </html>
