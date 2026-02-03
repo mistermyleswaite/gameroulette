@@ -6,13 +6,26 @@
     <title>GameSort baby!</title>
     <link rel="gsicon" href="/images/placeholder.png" /> 
     <link rel='stylesheet' href='stylesheet.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   </head>
-
   <body>
     <img src="/images/cute.jpg" width=100em height=10em></img>
     <header>
-      <h1>GameSort</h1>
+        <div id='titlebanner'><h1>GameSort</h1></div>
+        <button type="button" id="menu">burgermenu</button>
     </header>
+    <nav id='sidebar'>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sort.html">Sort</a></li>
+            <li><a href="lists.html">Lists</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><button type="button" id="logout">logout</button><li>
+          </ul>
+    </nav>
     <hr/>
     <main>  
         <p>Enter your account information to login or register.</p>
@@ -26,16 +39,6 @@
           <button type="submit">Login</button>
           <button type="register">Register</button>
         </form>  
-      <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sort.html">Sort</a></li>
-            <li><a href="lists.html">Lists</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="profile.html">Profile</a></li>
-          </ul>
-      </nav>
-      <p>hi</p>
       <hr />
       <footer>
         <p>Author: Myles Ruff</p>
