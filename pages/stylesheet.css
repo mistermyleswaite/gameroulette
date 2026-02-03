@@ -64,6 +64,7 @@ body {
 }
 
 .content {
+    display: flex;
     flex-grow: 1;
     justify-content: center;
     padding: 10em;
@@ -104,10 +105,16 @@ footer {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-size: 4em;
+    font-size: 2em;
 }
 
 a {
     text-decoration: none;
     color:rgb(204, 239, 239)
+}
+
+.list {
+    list-style: none;
+    background-color: rgb(10, 10, 10, 0.2);
+    margin: 0.5em;
 }

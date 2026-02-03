@@ -11,28 +11,27 @@
     <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div id='titlebanner'><h1>GameSort</h1></div>
-        <button type="button" id="menu">burgermenu</button>
-    </header>
-    <nav id='sidebar'>
-          <ul id='sidebarMenu'>
+    <header id='headbar'>
+        <img id='icon' src="/images/cute.jpg" width=100em height=100em></img>
+        <div id='titlebanner'><h1>Game Sort</h1></div>
+        <div class='burger'><button type="button">o</button></div>
+        <nav class='menu'>
+          <ul>
             <li><a href="home.html">HOME</a></li>
             <li><a href="sort.html">SORT</a></li>
-            <li><a href="lists.html">LIST</a></li>
+            <li><a href="lists.html">LISTS</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="profile.html">PROFILE</a></li>
             <li><button type="button" id="logout">logout</button><li>
           </ul>
       </nav>
-
-    <hr />
-
-    <main>
-        <h2>This is where the database is pinged to grab the lists stored of the tagged/sorted games.</h2>
-        <div>
+    </header>
+    <div class='container'>
+    <main class='content'>
+        <!-- <h2>This is where the database is pinged to grab the lists stored of the tagged/sorted games.</h2> -->
+        <div class='listbox' id='upnextbox'>
             <h3>Up Next!</h3>
-            <ul id="upnext">
+            <ul class='list' id="upnext">
                 <li><h5>list1</h5></li>
                 <li><p>game1</p></li>
                 <li><p>game2</p></li>
@@ -41,9 +40,9 @@
                 <li><p>game5</p></li>
             </ul>
         </div>
-        <div>
+        <div class='listbox' id='alrplayedbox'>
             <h3>Already Played</h3>
-            <ul id="alrplayed">
+            <ul class='list' id="alrplayed">
                 <li><h5>list2</h5></li>
                 <li><p>game1</p></li>
                 <li><p>game2</p></li>
@@ -52,9 +51,9 @@
                 <li><p>game5</p></li>
             </ul>
         </div>
-        <div>
+        <div class='listbox' id='skipbox'>
             <h3>Skip</h3>
-            <ul id="skiplist">
+            <ul class='list' id="skip">
                 <li><h5>list3</h5></li>
                 <li><p>game1</p></li>
                 <li><p>game2</p></li>
@@ -63,9 +62,9 @@
                 <li><p>game5</p></li>
             </ul>
         </div>
-        <div>
+        <div class='listbox' id='doombox'>
             <h3>PIT OF DOOM</h3>
-            <ul id="pitofdoom">
+            <ul class='list' id="pitofdoom">
                 <li><h5>list4</h5></li>
                 <li><p>game1</p></li>
                 <li><p>game2</p></li>
@@ -74,4 +73,6 @@
                 <li><p>game5</p></li>
             </ul>
         </div>
+    </main>
+    </div>
 </body>
