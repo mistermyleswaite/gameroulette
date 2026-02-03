@@ -11,13 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
+    <header id='headbar'>
         <img id='icon' src="/images/cute.jpg" width=100em height=100em></img>
         <div id='titlebanner'><h1>Game Sort</h1></div>
-    </header>
-    <button type="button" id="burger">o</button>
-    <div class='container'>
-      <nav class='sidebar'>
+        <div class='burger'><button type="button">o</button></div>
+        <nav class='menu'>
           <ul>
             <li><a href="home.html">HOME</a></li>
             <li><a href="sort.html">SORT</a></li>
@@ -27,6 +25,8 @@
             <li><button type="button" id="logout">logout</button><li>
           </ul>
       </nav>
+    </header>
+    <div class='container'>      
       <main class='content'>  
         <p>Enter your account information to login or register.</p>
         <form method="get" action="sort.html">
