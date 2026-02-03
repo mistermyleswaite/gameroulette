@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>GameSort baby!</title>
-    <link rel="gsicon" href="/images/placeholder.png" /> 
-    <link rel='stylesheet' href='stylesheet.css' />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel='gsicon' href='/images/placeholder.png' /> 
+    <link rel='stylesheet' href='./dist/output.css' type="text/css" />
+    <!-- <link rel='stylesheet' href='/src/stylesheet.css' /> -->
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap' rel='stylesheet'>
+  </head>
+  <body class=>
     <header id='headbar'>
-        <img id='icon' src="/images/cute.jpg" width=100em height=100em></img>
-        <div id='titlebanner'><h1>Game Sort</h1></div>
-        <div class='burger'><button type="button">o</button></div>
+        <div class='titlebanner'><h1>Game Sort</h1></div>
         <nav class='menu'>
-          <ul>
-            <li><a href="home.html">HOME</a></li>
-            <li><a href="sort.html">SORT</a></li>
-            <li><a href="lists.html">LISTS</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="profile.html">PROFILE</a></li>
-            <li><button type="button" id="logout">logout</button><li>
+          <ul class="flex flex-wrap gap-4">
+            <li><a href='home.html'>HOME</a></li>
+            <li><a href='sort.html'>SORT</a></li>
+            <li><a href='lists.html'>LISTS</a></li>
+            <li><a href='about.html'>ABOUT</a></li>
+            <li><a href='profile.html'>PROFILE</a></li>
+            <li><button type='button' id='logout' class='btn-glass'>logout</button><li>
           </ul>
       </nav>
     </header>
     <main class='container'>
-    <div class='content'>
-        <img src="/images/mypfp.jpg" alt="Myles' beautiful face" width=200em height=300em/>
+    <div class='content flex-col flex-wrap align-middle justify-center-safe gap-5'>
+        <img id='pfp' class='rounded-full justify-center' src="/images/mypfp.jpg" alt="Myles' beautiful face" width=200em height=300em/>
         <h1>Myles Ruff</h1>
-        <ul>
-            <li><a href="https://www.youtube.com/@myolts">YouTube</a></li>
-            <li><p>Dev Time: 30 mins because I'm awesome</p></li>
-            <li><p>Favorite Song:</p>
-                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6WTHWki7Q1oNExA2gOf5Wf?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></li>
+        <ul class='gap-5 m-4'>
+            <li class='m-4'><a href="https://www.youtube.com/@myolts">YouTube</a></li>
+            <li class='align-middle justify-center'><p>Favorite Song:</p>
+                <iframe class='block mx-auto' data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6WTHWki7Q1oNExA2gOf5Wf?utm_source=generator&theme=0" width="50%" height="50%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></li>
             <li><p>Favorite Game:</p>
-                <a href="https://hytale.com">HYTALE!</a>
+                <a href="https://hytale.com">HYTALE!</a></li>
         </ul>
     </div>
     </main>

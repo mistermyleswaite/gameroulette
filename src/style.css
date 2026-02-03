@@ -82,7 +82,7 @@ body {
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    padding: 10em;
+    padding: 1em;
     text-align: center;
 }
 
@@ -128,4 +128,18 @@ a {
     list-style: none;
     background-color: rgb(10, 10, 10, 0.2);
     margin: 0.5em;
+    padding: 10em;
+}
+
+.websocket {
+    align-self: flex-end;
+    background-color: rgba(26, 8, 8, 0.3);
+    margin: 0.5em;
+    margin-top: 50%;
+}
+
+#pfp {
+    align-self: center;
+    border-radius: 15%;
+    border-color: #1c161c
 }
