@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup - Simon](https://simon.cs260.click)
+[My startup - Simon](https://simon.myolts.com)
 
 ## Helpful links
 
@@ -10,26 +10,20 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 54.208.186.120. 
+I have an ssh alias set for 'ssh gamesort'.
 
 ## Caddy
 
-No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
+I failed to edit the file initially, but I didn't notice because I was still able to see the site despite not being on the http(S)//: protocol. It said not secure in the top right, and I missed the fact that I was supposed to change that.
 
 ## HTML
 
-This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
-
-The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
+This part took a bit longer than I'd like, as I didn't know what convention was to the semantic structure of the page. As such, I've done a LOT of restructuring, but it feels a little more solid now.
 
 ## CSS
 
-This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
-
-Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
-
-I did like the navbar it made it super easy to build a responsive header.
+This was by far the most time-consuming part of the project. I spent an inordinate amount of time simply configuring the tailwind css library to work, and as I'm writing this, I'm still waiting for the library to finish deploying on my server.
 
 ```html
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
