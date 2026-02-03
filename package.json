@@ -1,0 +1,30 @@
+{
+  "name": "gamesort",
+  "version": "1.0.0",
+  "description": "[My Notes](notes.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mistermyleswaite/gameroulette.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mistermyleswaite/gameroulette/issues"
+  },
+  "homepage": "https://github.com/mistermyleswaite/gameroulette#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "react": "^19.2.4"
+  }
+}
