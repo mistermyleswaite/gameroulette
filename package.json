@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/mistermyleswaite/gameroulette#readme",
   "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
-    "autoprefixer": "^10.4.24",
-    "postcss": "^8.5.6",
     "react": "^19.2.4"
   }
 }

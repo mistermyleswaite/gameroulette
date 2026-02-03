@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>GameSort baby!</title>
+    <link rel='gsicon' href='/images/placeholder.png' /> 
+    <link rel='stylesheet' href='./dist/output.css' type="text/css" />
+    <!-- <link rel='stylesheet' href='/src/stylesheet.css' /> -->
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap' rel='stylesheet'>
+  </head>
+  <body class=>
+    <header id='headbar'>
+        <div class='titlebanner'><h1>Game Sort</h1></div>
+        <nav class='menu'>
+          <ul class="flex flex-wrap gap-4">
+            <li><a href='home.html'>HOME</a></li>
+            <li><a href='sort.html'>SORT</a></li>
+            <li><a href='lists.html'>LISTS</a></li>
+            <li><a href='about.html'>ABOUT</a></li>
+            <li><a href='profile.html'>PROFILE</a></li>
+            <li><button type='button' id='logout' class='btn-glass'>logout</button><li>
+          </ul>
+      </nav>
+    </header>
+    <div class='homecontainer'>      
+      <main class='content flex flex-wrap'>  
+        <p class='logininfo'>Enter your account information to login or register.</p>
+        <form method='get' action='sort.html'>
+          <div class="flex flex-wrap gap-5 m-4">
+            <input type='text' class='input-glass' placeholder='User' />
+            <input type='password' class='input-glass' placeholder='Password' />
+          </div>
+        <div class='flex gap-20 m-4'>
+          <button type='submit' class='btn-glass'>Login</button>
+          <button type='register' class='btn-glass'>Register</button>
+        </div>
+        </form>
+      </main>
+    </div>  
+      <footer>
+        <p>Author: Myles Ruff</p>
+        <a href='https://www.youtube.com/@myolts'>View my awesome stupid channel</a>
+        <a href='https://github.com/mistermyleswaite/gameroulette'>GitHub</a>
+      </footer>
+    </body>
+</html>
