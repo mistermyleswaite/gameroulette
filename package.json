@@ -1,4 +1,15 @@
 {
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-devtools": "^7.0.1",
+    "react-dom": "^19.2.4",
+    "react-router": "^7.13.0",
+    "react-tailwind": "^0.0.0",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  },
   "name": "gamesort",
   "version": "1.0.0",
   "description": "[My Notes](notes.md)",
@@ -19,17 +30,5 @@
   "bugs": {
     "url": "https://github.com/mistermyleswaite/gameroulette/issues"
   },
-  "homepage": "https://github.com/mistermyleswaite/gameroulette#readme",
-  "devDependencies": {
-    "autoprefixer": "^10.4.24",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18"
-  },
-  "dependencies": {
-    "@headlessui/react": "^2.2.9",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-tailwind": "^0.0.0",
-    "vite": "^7.3.1"
-  }
+  "homepage": "https://github.com/mistermyleswaite/gameroulette#readme"
 }
