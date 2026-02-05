@@ -7,8 +7,8 @@ function Sort() {
         <div>
             <h2>Sort!</h2>
             <p>placeholder roulette image</p>
-            <img src="./images/cute.jpg" width='200em' height='200em' className="roulette" alt="placeholder image." />
-            <svg id="roulette" src="./images/cute.jpg"></svg>
+            <img src="/cute.jpg" width='200em' height='200em' className="roulette" alt="placeholder image." />
+            <svg id="roulette" src="/cute.jpg"></svg>
             <button type="button" id="addlist">Add to List</button>
             <button type="button" id="skipsort">Skip</button>
         </div>
@@ -17,21 +17,21 @@ function Sort() {
       <div className='websocket'>
           <p>WebSocket placeholder, goes on the right side</p>
             <table>
-                <th>
+                <thead>
                     <td><p>Username</p></td>
                     <td><p>Statbar</p></td>
                     <td><p>Percentage</p></td>
-                </th>
-                <tr>
+                </thead>
+                <tbody>
                     <td><p>Username1</p></td>
                     <td><p>Statbar1</p></td>
                     <td><p>Percentage1</p></td>
-                </tr>
-                <tr>
+                </tbody>
+                <tbody>
                     <td><p>Username2</p></td>
                     <td><p>Statbar2</p></td>
                     <td><p>Percentage2</p></td>
-                </tr>
+                </tbody>
             </table>
         </div>
     </main>
