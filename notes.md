@@ -32,9 +32,9 @@ I struggled with this because of a Spotify embed I had in my about page. I had t
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+This was by far the hardest part for me, and because I was so intimidated and I didn't know where to start, I simply... didn't. I definitely got my but kicked for that, and I'm still working through it now, but I have a better idea of how I can tackle it little bits at a time. 
 
-Handling the toggling of the checkboxes was particularly interesting.
+This definitely helped me see how I struggle to split big tasks into smaller bites to handle them appropriately, and I instead ignore them and hope they'll go away, which definitely is NOT the case!
 
 ```jsx
 <div className="input-group sound-button-container">
