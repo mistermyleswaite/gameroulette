@@ -1,6 +1,10 @@
 import React from 'react'
 
 function Sort() {
+    function countClick() {
+        console.log('count')
+    }
+
   return (
     <main className='container'>
       <div className='content'>
@@ -14,6 +18,7 @@ function Sort() {
         </div>
         <hr />
       </div>
+      <button onClick={countClick}>Count</button>
       <div className='websocket'>
           <p>WebSocket placeholder, goes on the right side</p>
             <table>

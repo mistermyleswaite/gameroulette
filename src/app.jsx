@@ -5,7 +5,6 @@ import Sort from './sort/sort.jsx'
 import About from './about/about.jsx'
 import Lists from './lists/lists.jsx'
 import Profile from './profile/profile.jsx'
-import '../dist/output.css'
 
 
 export default function App() {

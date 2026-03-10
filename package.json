@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
@@ -12,6 +13,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
     "vite": "^7.3.1"
   },
   "name": "gamesort",
@@ -30,7 +32,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/mistermyleswaite/gameroulette/issues"
   },
