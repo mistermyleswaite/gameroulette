@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { AuthState } from '../login/authState';
 
-function Sort() {
+function Sort({ authState }) {
+    const navigate = useNavigate();
+    const [gameNumber, setGameNumber] = React.useState(0);
+
+    useEffect(() => {
+        if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
+            navigate('/');
+        }
+    }, [authState, navigate])
+
+    function spin() {
+        setGameNumber(gameNumber + 1);
+    }
+
     function countClick() {
         console.log('count')
     }
@@ -8,19 +23,21 @@ function Sort() {
   return (
     <main className='container'>
       <div className='content'>
-        <div>
-            <h2>Sort!</h2>
-            <p>placeholder roulette image</p>
-            <img src="/cute.jpg" width='200em' height='200em' className="roulette" alt="placeholder image." />
-            <svg id="roulette" src="/cute.jpg"></svg>
-            <button type="button" id="addlist">Add to List</button>
-            <button type="button" id="skipsort">Skip</button>
+        <h2>Sort!</h2>
+        <div className='game-display'>
+            {/*current game goes here*/}
+            <p> Game {gameNumber}</p>
         </div>
-        <hr />
       </div>
-      <button onClick={countClick}>Count</button>
+      <div className='button-group'>
+        <button onClick={() => spin()} type="button" className='btn-glass'>Spin</button>
+        <button onClick={() => spin()} type="button" className='btn-glass'>List1</button>
+        <button onClick={() => spin()} type="button" className='btn-glass'>List2</button>
+        <button onClick={() => spin()} type="button" className='btn-glass'>List3</button>
+        <button onClick={() => spin()} type="button" className='btn-glass'>List4</button>
+      </div>
       <div className='websocket'>
-          <p>WebSocket placeholder, goes on the right side</p>
+          {/* <p>WebSocket placeholder, goes on the right side</p>
             <table>
                 <thead>
                     <td><p>Username</p></td>
@@ -37,8 +54,8 @@ function Sort() {
                     <td><p>Statbar2</p></td>
                     <td><p>Percentage2</p></td>
                 </tbody>
-            </table>
-        </div>
+            </table> */}
+      </div>
     </main>
   );
 }

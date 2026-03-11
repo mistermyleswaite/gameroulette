@@ -10,7 +10,7 @@ function Login({ userName, authState, onAuthChange }) {
     <div className='homecontainer'>      
       <main className='content flex flex-wrap'>  
         <div>
-        {authState !== AuthState.Unknown}
+        {authState !== AuthState.Unknown && <h1>Welcome to GameSort</h1>}
         {authState === AuthState.Authenticated && (
           <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
         )}  
