@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { AuthState } from '../login/authState';
 
-function Lists() {
+function Lists({ authState }) {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+            if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
+                navigate('/');
+            }
+        }, [authState, navigate])
+        
   return (
     <main className='container'>
         <div className='content gap-20 flex flex-wrap'>

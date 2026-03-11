@@ -50,9 +50,9 @@ const [authState, setAuthState] = React.useState(currentAuthState);
           } 
           exact />
         <Route path='/sort' element={<Sort authState={authState} />} />
-        <Route path='/lists' element={<Lists />} />
+        <Route path='/lists' element={<Lists authState={authState} />} />
         <Route path='/about' element={<About />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile authState={authState} />} />
       </Routes>
     
       <footer>

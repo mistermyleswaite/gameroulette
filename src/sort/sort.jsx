@@ -16,10 +16,6 @@ function Sort({ authState }) {
         setGameNumber(gameNumber + 1);
     }
 
-    function countClick() {
-        console.log('count')
-    }
-
   return (
     <main className='sort-content'>
       <div className='sort-group'>
