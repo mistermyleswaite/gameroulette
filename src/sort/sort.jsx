@@ -21,8 +21,8 @@ function Sort({ authState }) {
     }
 
   return (
-    <main className='container'>
-      <div className='content'>
+    <main className='sort-content'>
+      <div className='sort-group'>
         <h2>Sort!</h2>
         <div className='game-display'>
             {/*current game goes here*/}

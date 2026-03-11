@@ -143,3 +143,41 @@ a {
     border-radius: 15%;
     border-color: #1c161c
 }
+
+.sort-group {
+    align-items: center;
+    justify-content: center;   
+}
+
+.sort-group h2 {
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+}
+
+.sort-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    width: 100%
+}
+
+.game-display {
+    border: 2px solid white;
+    background-color: rgb(103, 99, 99);
+    padding: 2em;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2em;
+}
