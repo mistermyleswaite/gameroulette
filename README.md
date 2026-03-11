@@ -94,8 +94,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - All pages actively check for whether or not the user is authenticated and react appropriately
+- [x] **Hooks** - useEffect checks for auth state and "spins" game count and useState updates authState.
 
 ## 🚀 Service deliverable
 

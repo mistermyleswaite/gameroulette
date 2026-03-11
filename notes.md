@@ -36,22 +36,4 @@ This was by far the hardest part for me, and because I was so intimidated and I 
 
 This definitely helped me see how I struggle to split big tasks into smaller bites to handle them appropriately, and I instead ignore them and hope they'll go away, which definitely is NOT the case!
 
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
-```
+Once I actually sat down to start implementing the auth states, I got a good grasp of how the web app works all together, so I feel much better prepared to implement the next part of the startup.
