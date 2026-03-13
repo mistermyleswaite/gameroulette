@@ -15,6 +15,9 @@ function Sort({ authState }) {
         PTOD: []
     });
 
+    const storedUnsorted = localStorage.getItem('unsortedGames');
+    const storedSorted = localStorage.getItem('sortedGames');
+
     useEffect(() => {
         if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
             navigate('/');
@@ -23,23 +26,19 @@ function Sort({ authState }) {
             spin();
         }
     
+        if (storedUnsorted) {
+            setUnsortedGames(JSON.parse(storedUnsorted));
+        } else {
+            const newGames = generateGames();
+            setUnsortedGames(newGames);
+            localStorage.setItem('unsortedGames', JSON.stringify(newGames));
+        }
 
-    const storedUnsorted = localStorage.getItem('unsortedGames');
-    const storedSorted = localStorage.getItem('sortedGames');
-
-    if (storedUnsorted) {
-        setUnsortedGames(JSON.parse(storedUnsorted));
-    } else {
-        const newGames = generateGames();
-        setUnsortedGames(newGames);
-        localStorage.setItem('unsortedGames', JSON.stringify(newGames));
-    }
-
-    if (storedSorted) {
-        setSortedGames(JSON.parse(storedSorted));
-    } else {
-        localStorage.setItem('sortedGames', JSON.stringify(sortedGames));
-    }
+        if (storedSorted) {
+            setSortedGames(JSON.parse(storedSorted));
+        } else {
+            localStorage.setItem('sortedGames', JSON.stringify(sortedGames));
+        }
     }, [authState, navigate])
 
     function generateGames() {
