@@ -94,7 +94,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **All functionality implemented or mocked out** - All pages actively check for whether or not the user is authenticated and react appropriately
+- [x] **All functionality implemented or mocked out** - All pages actively check for whether or not the user is authenticated and react appropriately --> I did not realize that this is actually part of the Service deliverable.
+- Added tagging and sorting on the sort page, lists are stored in local storage, and the lists page organizes and displays games based on how they're sorted. 
 - [x] **Hooks** - useEffect checks for auth state and "spins" game count and useState updates authState.
 
 ## 🚀 Service deliverable
