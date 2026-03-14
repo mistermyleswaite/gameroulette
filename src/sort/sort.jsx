@@ -14,41 +14,39 @@ function Sort({ authState }) {
         PTOD: []
     });
 
-    // const storedUnsorted = localStorage.getItem('unsortedGames');
-    // const storedSorted = localStorage.getItem('sortedGames');
-    apiRouter.get('/lists/get', verifyAuth, async (req, res) => {
-        const user = await findUser('token', req.cookies[authCookieName]);
-        const state = userStates.find((u) => u.email === user.email);
-  
-        if (state) {
-            res.send(state);
-        } else {
-        res.status(404).send({ msg: "No saved progress found" });
+    const spin = useCallback((currentUnsorted) => {
+        const list = currentUnsorted || unsortedGames;
+        if (list.length === 0) {
+            setCurrentGame(null);
+            return;
         }
-    });
-
+        const randomIdx = Math.floor(Math.random() * list.length);
+        setCurrentGame(list[randomIdx]);
+    }, [unsortedGames]);
 
     useEffect(() => {
         if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
             navigate('/');
         }
-        if (!currentGame && storedUnsorted){
-            spin();
+        async function loadInitialData() {
+            try {
+                const response = await fetch('/api/lists/get');
+                const data = await response.json();
+                if (response.ok && data.unsorted && data.unsorted.length > 0) {
+                    setUnsortedGames(data.unsorted);
+                    setSortedGames(data.sorted);
+                    spin(data.unsorted);
+                } else {
+                    const newGames = generateGames();
+                    setUnsortedGames(newGames);
+                    spin(newGames);
+                }
+            } catch (error) {
+                console.error("Error loading games:", error);
+            }
         }
-    
-        // if (storedUnsorted) {
-        //     setUnsortedGames(JSON.parse(storedUnsorted));
-        // } else {
-        //     const newGames = generateGames();
-        //     setUnsortedGames(newGames);
-        //     localStorage.setItem('unsortedGames', JSON.stringify(newGames));
-        // }
 
-        // if (storedSorted) {
-        //     setSortedGames(JSON.parse(storedSorted));
-        // } else {
-        //     localStorage.setItem('sortedGames', JSON.stringify(sortedGames));
-        // }
+        loadInitialData();        
     }, [authState, navigate])
 
     function generateGames() {
@@ -63,15 +61,15 @@ function Sort({ authState }) {
         return games;
     }
 
-    function spin() {
-        if (unsortedGames.length === 0) {
-            setCurrentGame(null);
-            return;
-        }
+    // function spin() {
+    //     if (unsortedGames.length === 0) {
+    //         setCurrentGame(null);
+    //         return;
+    //     }
 
-        const randomIdx = Math.floor(Math.random() * unsortedGames.length);
-        setCurrentGame(unsortedGames[randomIdx]);
-    }
+    //     const randomIdx = Math.floor(Math.random() * unsortedGames.length);
+    //     setCurrentGame(unsortedGames[randomIdx]);
+    // }
 
     async function sortGame(list) {
         if (!currentGame) return;
@@ -89,7 +87,7 @@ function Sort({ authState }) {
         setSortedGames(nextSorted);
 
         try {
-            const response = await fetch('/api/lists', {
+            await fetch('/api/lists', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -97,16 +95,11 @@ function Sort({ authState }) {
                     sorted: nextSorted
                 }),
             });
-
-            if (!response.ok) {
-                throw new Error('Failed to save to server');
-            }
-
         } catch (error) {
             console.error("Save Error:", error);
         }
 
-        spin();
+        spin(nextUnsorted);
     }
 
 
@@ -154,4 +147,4 @@ function Sort({ authState }) {
   );
 }
 
-export default Sort
+export default Sort;
