@@ -4,7 +4,6 @@ import { AuthState } from '../login/authState';
 
 function Sort({ authState }) {
     const navigate = useNavigate();
-    const [gameNumber, setGameNumber] = React.useState(0);
 
     const [unsortedGames, setUnsortedGames] = useState([]);
     const [currentGame, setCurrentGame] = useState(null);
@@ -15,8 +14,19 @@ function Sort({ authState }) {
         PTOD: []
     });
 
-    const storedUnsorted = localStorage.getItem('unsortedGames');
-    const storedSorted = localStorage.getItem('sortedGames');
+    // const storedUnsorted = localStorage.getItem('unsortedGames');
+    // const storedSorted = localStorage.getItem('sortedGames');
+    apiRouter.get('/lists/get', verifyAuth, async (req, res) => {
+        const user = await findUser('token', req.cookies[authCookieName]);
+        const state = userStates.find((u) => u.email === user.email);
+  
+        if (state) {
+            res.send(state);
+        } else {
+        res.status(404).send({ msg: "No saved progress found" });
+        }
+    });
+
 
     useEffect(() => {
         if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
@@ -26,19 +36,19 @@ function Sort({ authState }) {
             spin();
         }
     
-        if (storedUnsorted) {
-            setUnsortedGames(JSON.parse(storedUnsorted));
-        } else {
-            const newGames = generateGames();
-            setUnsortedGames(newGames);
-            localStorage.setItem('unsortedGames', JSON.stringify(newGames));
-        }
+        // if (storedUnsorted) {
+        //     setUnsortedGames(JSON.parse(storedUnsorted));
+        // } else {
+        //     const newGames = generateGames();
+        //     setUnsortedGames(newGames);
+        //     localStorage.setItem('unsortedGames', JSON.stringify(newGames));
+        // }
 
-        if (storedSorted) {
-            setSortedGames(JSON.parse(storedSorted));
-        } else {
-            localStorage.setItem('sortedGames', JSON.stringify(sortedGames));
-        }
+        // if (storedSorted) {
+        //     setSortedGames(JSON.parse(storedSorted));
+        // } else {
+        //     localStorage.setItem('sortedGames', JSON.stringify(sortedGames));
+        // }
     }, [authState, navigate])
 
     function generateGames() {
@@ -63,25 +73,38 @@ function Sort({ authState }) {
         setCurrentGame(unsortedGames[randomIdx]);
     }
 
-    function sortGame(list) {
+    async function sortGame(list) {
         if (!currentGame) return;
 
         const tagged = {...currentGame, tags: [...currentGame.tags, list] };
 
-        setUnsortedGames(prev => {
-            const updated = prev.filter(g => g.id !== currentGame.id);
-            localStorage.setItem('unsortedGames', JSON.stringify(updated));
-            return updated;
-        });
+        const nextUnsorted = unsortedGames.filter(g => g.id !== currentGame.id);
+        const nextSorted = {
+            ...sortedGames,
+            [list]: [...(sortedGames[list] || []), tagged]
+        };
 
-        setSortedGames(prev => {
-            const updated = {
-                ...prev,
-                [list]: [...(prev[list] || []), tagged]
-            };
-            localStorage.setItem('sortedGames', JSON.stringify(updated));
-            return updated;
-        });
+        // update the react state before puhsing to backend
+        setUnsortedGames(nextUnsorted);
+        setSortedGames(nextSorted);
+
+        try {
+            const response = await fetch('/api/lists', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    unsorted:nextUnsorted,
+                    sorted: nextSorted
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save to server');
+            }
+
+        } catch (error) {
+            console.error("Save Error:", error);
+        }
 
         spin();
     }

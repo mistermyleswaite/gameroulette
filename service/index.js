@@ -65,15 +65,28 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-// GetsortedGames
-apiRouter.get('/lists/get', verifyAuth, (_req, res) => {
-  res.send(lists);
+// get userState - only pulls the isolated user's state
+apiRouter.get('/lists/get', verifyAuth, async (_req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    const state = userStates.find((u) => u.email === user.email);
+
+    if (state) {
+        res.send(state);
+    } else {
+        res.send ({
+            email: user.email,
+            unsorted: [],
+            sorted: { UPNX: [], ALPD: [], BKLG: [], PTOD: [] }
+        });
+    }
 });
 
-// SubmitScore
-apiRouter.post('/lists', verifyAuth, (req, res) => {
-  lists = updateLists(req.body);
-  res.send(lists);
+// post userState - isolates only the current user to update their state
+apiRouter.post('/lists', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const { unsorted, sorted } = req.body;
+  const newState = updateUserStates(user.email, unsorted, sorted);
+  res.send(newState);
 });
 
 // Default error handler
@@ -86,7 +99,7 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-function updateUserData(email, unsorted, sorted) {
+function updateUserStates(email, unsorted, sorted) {
   const index = userStates.findIndex((u) => u.email === email);
   
   const newState = {
