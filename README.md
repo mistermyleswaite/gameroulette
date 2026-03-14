@@ -107,7 +107,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Calls to third party endpoints** - I have not yet implemented this.
 - [X] **Backend service endpoints** - The sorting logic is mainly contained in the sort page, as it's relatively simple sorting logic that handles the pulling and pushing.
 - [X] **Frontend calls service endpoints** - Sort (frontend) page pulls the data from the backend endpoint '/api/lists/get' and updates it '/api/list'
-- [X] **Supports registration, login, logout, and restricted endpoint** - Works exactly as expected - users can register, login and logout.
+- [ ] **Supports registration, login, logout, and restricted endpoint** - I lied. It does not work as expected because I did not update login.jsx yet.
 
 ## 🚀 DB deliverable
 
