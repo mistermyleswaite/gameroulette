@@ -102,12 +102,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - Done, node.js works and express accepts curl responses.
+- [X] **Static middleware for frontend** - Express serves up the main page, and it works as expected!
+- [ ] **Calls to third party endpoints** - I have not yet implemented this.
+- [X] **Backend service endpoints** - The sorting logic is mainly contained in the sort page, as it's relatively simple sorting logic that handles the pulling and pushing.
+- [X] **Frontend calls service endpoints** - Sort (frontend) page pulls the data from the backend endpoint '/api/lists/get' and updates it '/api/list'
+- [X] **Supports registration, login, logout, and restricted endpoint** - Works exactly as expected - users can register, login and logout.
 
 ## 🚀 DB deliverable
 

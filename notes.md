@@ -37,3 +37,11 @@ This was by far the hardest part for me, and because I was so intimidated and I 
 This definitely helped me see how I struggle to split big tasks into smaller bites to handle them appropriately, and I instead ignore them and hope they'll go away, which definitely is NOT the case!
 
 Once I actually sat down to start implementing the auth states, I got a good grasp of how the web app works all together, so I feel much better prepared to implement the next part of the startup.
+
+## Service
+
+Because I implemented the login and logout features much like Simon and I did it in the react phase, it was actually very easy to implement the authentication, as I practically copied over what simon used, even with similar endpoints That was particularly easy! 
+
+The hardest part for certain was parsing the game lists per user. I have to nest the objects, then post/get according to the user so we're not pulling or pushing the entire list every time. 
+
+The lists page is going to be one of the most difficult implementations I think, and I'm still not sure how to implement a 3rd party service, but I'll figure it out!
