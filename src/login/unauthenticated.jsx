@@ -3,7 +3,7 @@ import React from 'react';
 export function Unauthenticated(props) {
     const [userName, setUserName] = React.useState(props.userName);
     const [password, setPassword] = React.useState('');
-    // const [displayError, setDisplayError] = React.useState(null);
+    const [displayError, setDisplayError] = React.useState(null);
 
     async function loginuser() {
       

@@ -66,8 +66,14 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // get userState - only pulls the isolated user's state
-apiRouter.get('/lists/get', verifyAuth, async (_req, res) => {
+apiRouter.get('/lists/get', verifyAuth, async (req, res) => {
+  try {
     const user = await findUser('token', req.cookies[authCookieName]);
+
+    if (!user) {
+      return res.status(401).send( {msg: 'Unauthorized!' });
+    }
+    
     const state = userStates.find((u) => u.email === user.email);
 
     if (state) {
@@ -79,6 +85,10 @@ apiRouter.get('/lists/get', verifyAuth, async (_req, res) => {
             sorted: { UPNX: [], ALPD: [], BKLG: [], PTOD: [] }
         });
     }
+  } catch (err) {
+    console.error("Error in /lists/get:", err);
+    res.status(500).send({ msg: 'Internal Server Error, idiot!'})
+  }
 });
 
 // post userState - isolates only the current user to update their state
@@ -138,10 +148,9 @@ async function findUser(field, value) {
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    secure: true,
+    secure: false,
     httpOnly: true,
     sameSite: 'lax',
-    path: '/',
   });
 }
 
