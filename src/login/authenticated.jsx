@@ -4,9 +4,25 @@ import { useNavigate } from 'react-router';
 export function Authenticated(props) {
     const navigate = useNavigate();
 
-    function logout() {
-        localStorage.removeItem('userName');
-        props.onLogout();
+    async function logout() {
+        try {
+            const response = await fetch('api/auth/logout', {
+                method: 'delete',
+                credentials: 'include',
+            });
+
+        if (response.ok) {
+            localStorage.removeItem('userName', userName);
+            props.onLogout();
+        } else {
+            localStorage.removeItem('userName', userName);
+            props.onLogout();
+        }
+        } catch (err) {
+            console.error("Logout failed", err);
+            props.onLogout();
+        }
+
     }
 
     return (
