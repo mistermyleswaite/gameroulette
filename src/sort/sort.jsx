@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthState } from '../login/authState';
 
 function Sort({ authState }) {
     const navigate = useNavigate();
+
+    const isLoaded = useRef(false);
 
     const [unsortedGames, setUnsortedGames] = useState([]);
     const [currentGame, setCurrentGame] = useState(null);
@@ -28,18 +30,38 @@ function Sort({ authState }) {
         if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
             navigate('/');
         }
+
         async function loadInitialData() {
+            if (isLoaded.current) return;
+
             try {
-                const response = await fetch('/api/lists/get');
+                const response = await fetch('/api/lists/get', {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if (response.status === 401) {
+                    console.warn("Session expired or missing. Initializing new games.")
+                    const newGames = generateGames();
+                    setUnsortedGames(newGames);
+                    spin(newGames);
+                    return;
+                }
+
+                if (response.ok) {
                 const data = await response.json();
-                if (response.ok && data.unsorted && data.unsorted.length > 0) {
-                    setUnsortedGames(data.unsorted);
-                    setSortedGames(data.sorted);
+                const hasSortedData = Object.values(data.sorted || {}).some(arr => arr.length > 0);
+
+                if (response.ok && (data.unsorted?.length > 0 || hasSortedData)) {
+                    setUnsortedGames(data.unsorted || []);
+                    setSortedGames(data.sorted || { UPNX: [], ALPD: [], BKLG: [], PTOD: [] });
                     spin(data.unsorted);
                 } else {
                     const newGames = generateGames();
                     setUnsortedGames(newGames);
                     spin(newGames);
+                }
+                isLoaded.current = true;
                 }
             } catch (error) {
                 console.error("Error loading games:", error);
@@ -60,16 +82,6 @@ function Sort({ authState }) {
         }
         return games;
     }
-
-    // function spin() {
-    //     if (unsortedGames.length === 0) {
-    //         setCurrentGame(null);
-    //         return;
-    //     }
-
-    //     const randomIdx = Math.floor(Math.random() * unsortedGames.length);
-    //     setCurrentGame(unsortedGames[randomIdx]);
-    // }
 
     async function sortGame(list) {
         if (!currentGame) return;
@@ -94,6 +106,7 @@ function Sort({ authState }) {
                     unsorted:nextUnsorted,
                     sorted: nextSorted
                 }),
+                credentials: 'include',
             });
         } catch (error) {
             console.error("Save Error:", error);

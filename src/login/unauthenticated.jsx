@@ -3,37 +3,39 @@ import React from 'react';
 export function Unauthenticated(props) {
     const [userName, setUserName] = React.useState(props.userName);
     const [password, setPassword] = React.useState('');
-    const [displayError, setDisplayError] = React.useState(null);
+    // const [displayError, setDisplayError] = React.useState(null);
 
     async function loginuser() {
-      const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+      
+      const response = await fetch('api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({email: userName, password: password}),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      });
 
-      const user = registeredUsers.find(u => u.username === userName && u.password === password);
-
-      if (user) {
+      if (response.ok) {
         localStorage.setItem('userName', userName);
         props.onLogin(userName);
       } else {
-        alert('Invalid username or password');
-        
+        const body = await response.json();
+        alert(`Error: ${body.msg}`);
       }
-
-      
     }
 
     async function createUser() {
-      const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+      const response = await fetch('api/auth/create', {
+        method: 'POST',
+        body: JSON.stringify({email: userName, password: password}),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      });
 
-      if (registeredUsers.find(u => u.username === userName)) {
-        alert('User already exists')
-        return;
+      if (response.ok) {
+        localStorage.setItem('userName', userName);
+        props.onLogin(userName);
+      } else {
+        const body = await response.json();
+        alert(`Error: ${body.msg}`);
       }
-
-      registeredUsers.push({ username: userName, password: password })
-      localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
-
-      localStorage.setItem('userName', userName);
-      props.onLogin(userName);
     }
 
     return (

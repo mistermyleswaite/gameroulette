@@ -6,6 +6,13 @@ import { AuthState } from './authState.jsx';
 
 
 function Login({ userName, authState, onAuthChange }) {
+
+  // const response = await fetch('api/auth/login', { ... });
+
+  // if (response.ok) {
+  //   setAuthState(AuthState.Authenticated);
+  //   navigate('/sort');
+  // }
   return (
     <div className='homecontainer'>      
       <main className='content flex flex-wrap'>  
