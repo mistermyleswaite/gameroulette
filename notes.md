@@ -45,3 +45,8 @@ Because I implemented the login and logout features much like Simon and I did it
 The hardest part for certain was parsing the game lists per user. I have to nest the objects, then post/get according to the user so we're not pulling or pushing the entire list every time. 
 
 The lists page is going to be one of the most difficult implementations I think, and I'm still not sure how to implement a 3rd party service, but I'll figure it out!
+
+
+## DB
+
+Now that I have the DB configured, I can safely implement my SteamAPI, receive the games list and begin sorting them per user. This implementation shouldn't take very long.

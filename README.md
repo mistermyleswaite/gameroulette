@@ -107,14 +107,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Calls to third party endpoints** - I have not yet implemented this.
 - [X] **Backend service endpoints** - The sorting logic is mainly contained in the sort page, as it's relatively simple sorting logic that handles the pulling and pushing.
 - [X] **Frontend calls service endpoints** - Sort (frontend) page pulls the data from the backend endpoint '/api/lists/get' and updates it '/api/list'
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I lied. It does not work as expected because I did not update login.jsx yet.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Login functions as expected.
 
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [X] **Stores data in MongoDB** - Now stores and retrieves sorted lists from MongoDB!
+- [X] **Stores credentials in MongoDB** - Now stores and retrieves credentials from MongoDB!
 
 ## 🚀 WebSocket deliverable
 
