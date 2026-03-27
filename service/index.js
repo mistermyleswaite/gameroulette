@@ -52,13 +52,16 @@ apiRouter.post('/auth/create', async (req, res) => {
 apiRouter.post('/auth/login', async (req, res) => {
   const user = await db.collection('users').findOne({ email: req.body.email });
   if (user && await bcrypt.compare(req.body.password, user.password)) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      const newToken = uuid.v4();
+    const newToken = uuid.v4();
 
-      setAuthCookie(res, newToken);
-      res.send({ email: user.email });
-      return;
-    }
+    await db.collection('users').updateOne(
+      { _id: user._id },
+      { $set: { token: newToken } }
+    );
+
+    setAuthCookie(res, newToken);
+    res.send({ email: user.email });
+    return;
   }
   res.status(401).send({ msg: 'Unauthorized' });
 });
@@ -78,11 +81,18 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
+  const token = req.cookies[authCookieName];
+  console.log("Checking token from cookie:", token);
+
+  if (!db) return res.status(503).send({ msg: 'Database not ready' });
+
   const user = await db.collection('users').findOne({ token: req.cookies[authCookieName] });
   if (user) {
+    console.log("User found:", user.email);
     req.user = user;
     next();
   } else {
+    console.log("No user found for this token.");
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
@@ -90,12 +100,6 @@ const verifyAuth = async (req, res, next) => {
 // get userState - only pulls the isolated user's state
 apiRouter.get('/lists/get', verifyAuth, async (req, res) => {
   try {
-    const user = await db.collection('users').findOne({ token: req.cookies[authCookieName] });
-
-    if (!user) {
-      return res.status(401).send( {msg: 'Unauthorized!' });
-    }
-    
     const state = await db.collection('lists').findOne({ email: req.user.email });
 
     if (state) {
