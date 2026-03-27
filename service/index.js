@@ -3,6 +3,19 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const config = require('./dbConfig.json');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = `mongodb://mongo:${config.password}@ac-eeex6zp-shard-00-00.1q1lgfr.mongodb.net:27017,ac-eeex6zp-shard-00-01.1q1lgfr.mongodb.net:27017,ac-eeex6zp-shard-00-02.1q1lgfr.mongodb.net:27017/?ssl=true&replicaSet=atlas-t1g0oh-shard-0&authSource=admin&appName=Cluster0`;
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+let db;
+
+
 const app = express();
 
 const authCookieName = "token";
@@ -153,6 +166,18 @@ function setAuthCookie(res, authToken) {
     sameSite: 'lax',
   });
 }
+
+async function connectToDatabase() {
+  try {
+    await client.connect();
+    db = client.db('gamesort'); 
+    console.log("Database initialized and ready!");
+  } catch (err) {
+    console.error("Database connection failed AGAIN", err);
+  }
+}
+
+connectToDatabase();
 
 app.listen(port, () => {
   console.log(`Server is holding the line on port ${port}`);
