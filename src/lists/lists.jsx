@@ -2,19 +2,52 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthState } from '../login/authState';
 
-function Lists({ authState }) {
+export default function Lists({ authState }) {
     const navigate = useNavigate();
-        const [gameNumber, setGameNumber] = useState(0);
-    
-        const [unsortedGames, setUnsortedGames] = useState([]);
-        const [currentGame, setCurrentGame] = useState(null);
-        const [sortedGames, setSortedGames] = useState({
+    const [gameNumber, setGameNumber] = useState(0);
+    const [unsortedGames, setUnsortedGames] = useState([]);
+    const [currentGame, setCurrentGame] = useState(null);
+    const [sortedGames, setSortedGames] = useState({
+        UPNX: [],
+        ALPD: [],
+        BKLG: [],
+        PTOD: []
+    });
+    const [sortState, setSortState] = useState(false);
+
+    async function clearList() {
+        const emptySorted = {
             UPNX: [],
             ALPD: [],
             BKLG: [],
             PTOD: []
-        });
-        const [sortState, setSortState] = useState(false);
+            };
+        const emptyUnsorted = [];
+
+        try {
+            const response = await fetch('/api/lists', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    unsorted: emptyUnsorted,
+                    sorted: emptySorted
+                }),
+                credentials: 'include',
+            });
+
+            if (response.ok) {
+                setSortedGames(emptySorted);
+                setUnsortedGames(emptyUnsorted);
+
+                localStorage.removeItem('sortedGames');
+                alert("Lists cleared successfully!");
+            } else {
+                console.error("Failed to clear lists on server!", error);
+            }
+        } catch (error) {
+            console.error("clearList Error:", error);
+        }
+}
     
         useEffect(() => {
             if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
@@ -80,9 +113,7 @@ function Lists({ authState }) {
             </ul>
         </div>
       </div>
-      <button type='button' onClick={() => clearList()} id='clearList' className='btn-glass clearList'>Clear Lists</button>
+      <button type='button' onClick={() => clearList()} id='clearList' className='btn-glass clearList'>Clear All Lists</button>
     </main>
   );
 }
-
-export default Lists

@@ -103,7 +103,7 @@ function Sort({ authState }) {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    unsorted:nextUnsorted,
+                    unsorted: nextUnsorted,
                     sorted: nextSorted
                 }),
                 credentials: 'include',
