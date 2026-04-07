@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -24,7 +25,7 @@ const authCookieName = "token";
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -77,6 +78,38 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
+});
+
+// Get SteamAPI gameslist
+apiRouter.get('/steam/test/:steamId', async (req, res) => {
+  const {steamId} = req.params;
+  const API_KEY = process.env.STEAM_API_KEY
+
+  const steamUrl = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${API_KEY}&steamid=${steamId}&include_appinfo=true&format=json`;
+
+  try {
+    const response = await fetch(steamUrl);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`SteamAPI responded with status ${response.status}:`, errorText);
+      return res.status(response.status).send({ success: false, msg: "Steam API Error" });
+    }
+
+    const data = await response.json();
+
+    if (data.response && data.response.games) {
+      res.send({
+        success:true,
+        count: data.response.game_count,
+        games: data.response.games
+      });
+    } else {
+      res.status(404).send({ success: false, msg: "No games found or profile is private. "});
+    }
+  } catch (error) {
+    console.error("Steam API Error:", error);
+    res.status(500).send({ success: false, msg: "Failed to connect to Steam."});
+  }
 });
 
 // Middleware to verify that the user is authorized to call an endpoint
@@ -136,7 +169,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: 'dist' });
 });
 
 // function updateUserStates(email, unsorted, sorted) {
@@ -184,18 +217,21 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-async function connectToDatabase() {
-  try {
-    await client.connect();
-    db = client.db('gamesort'); 
-    console.log("Database initialized and ready!");
-  } catch (err) {
-    console.error("Database connection failed AGAIN", err);
-  }
+function connectToDatabase() {
+  client.connect()
+    .then(() => {
+      db = client.db('gamesort'); 
+      console.log("Database initialized and ready!");
+      app.listen(port, () => {
+        console.log(`Server is holding the line on port ${port}`);
+      });
+    })
+    .catch((err) => {
+      console.error("Database connection failed AGAIN", err);
+      process.exit(1);
+    })
 }
 
 connectToDatabase();
 
-app.listen(port, () => {
-  console.log(`Server is holding the line on port ${port}`);
-});
+
