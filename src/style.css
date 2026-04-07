@@ -180,3 +180,14 @@ a {
     gap: 2em;
     width: 100%
 }
+
+.clearList {
+    justify-content: center;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh;
+    
+}

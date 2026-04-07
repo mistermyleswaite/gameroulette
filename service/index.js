@@ -106,7 +106,7 @@ apiRouter.get('/lists/get', verifyAuth, async (req, res) => {
         res.send(state);
     } else {
         res.send ({
-            email: user.email,
+            email: req.user.email,
             unsorted: [],
             sorted: { UPNX: [], ALPD: [], BKLG: [], PTOD: [] }
         });

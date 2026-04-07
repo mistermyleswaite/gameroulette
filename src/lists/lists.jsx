@@ -19,17 +19,33 @@ function Lists({ authState }) {
         useEffect(() => {
             if (authState === AuthState.Unauthenticated || authState === AuthState.Unknown) {
                 navigate('/');
+                return;
             }
 
-            const storedSorted = localStorage.getItem('sortedGames');
-            if (storedSorted) {
-            setSortedGames(JSON.parse(storedSorted));
-            setSortState(true);
+            async function fetchLists() {
+                try {
+                    const response = await fetch('/api/lists/get');
+                    if (response.ok) {
+                        const data = await response.json();
+
+                        setUnsortedGames(data.unsorted || []);
+                        setSortedGames(data.sorted || {
+                            UPNX: [], ALPD: [], BKLG: [], PTOD: []
+                        });
+                        setSortState(true);
+
+                        localStorage.setItem('sortedGames', JSON.stringify(data.sorted));
+                    }
+                } catch (error) {
+                    console.error("Failed to fetch lists:", error);
+                }
             }
+
+            fetchLists();
         }, [authState, navigate])
     
   return (
-    <main className='container'>
+    <main className='listContainer'>
         <div className='content gap-20 flex flex-wrap'>
         <div className='listbox' id='UPNX'>
             <h3>Up Next!</h3>
@@ -64,6 +80,7 @@ function Lists({ authState }) {
             </ul>
         </div>
       </div>
+      <button type='button' onClick={() => clearList()} id='clearList' className='btn-glass clearList'>Clear Lists</button>
     </main>
   );
 }
