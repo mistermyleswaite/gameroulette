@@ -66,7 +66,7 @@ function Sort({ authState }) {
 
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const hostname = window.location.host;
-    const newSocket = new WebSocket(`${protocol}://localhost:3000`);
+    const newSocket = new WebSocket(`${protocol}://${hostname}`);
 
     newSocket.onopen = () => console.log("WebSocket connected to Gamesort");
     newSocket.onmessage = async (event) => {
