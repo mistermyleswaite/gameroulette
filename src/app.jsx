@@ -57,7 +57,6 @@ const [authState, setAuthState] = React.useState(currentAuthState);
     
       <footer>
         <p>Author: Myles Ruff</p>
-        <NavLink href='https://www.youtube.com/@myolts'>View my awesome stupid channel</NavLink>
         <NavLink href='https://github.com/mistermyleswaite/gameroulette'>GitHub</NavLink>
       </footer>
       </BrowserRouter>
