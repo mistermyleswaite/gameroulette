@@ -120,6 +120,7 @@ const verifyAuth = async (req, res, next) => {
   const user = await db.collection('users').findOne({ token: req.cookies[authCookieName] });
   if (user) {
     console.log("User found:", user.email);
+    localStorage.setItem('userName', user.email);
     req.user = user;
     next();
   } else {

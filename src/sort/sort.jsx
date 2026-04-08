@@ -126,9 +126,11 @@ function Sort({ authState }) {
     setUnsortedGames(nextUnsorted);
     setSortedGames(nextSorted);
 
+    const userName = localStorage.getItem('userName');
+
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
         socketRef.current.send(JSON.stringify({
-            user: authState.userName || authState.email || 'A gamer',
+            user: userName || 'A gamer',
             game: currentGame.name
         }));
     }

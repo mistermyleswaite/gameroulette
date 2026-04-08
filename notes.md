@@ -50,3 +50,7 @@ The lists page is going to be one of the most difficult implementations I think,
 ## DB
 
 Now that I have the DB configured, I can safely implement my SteamAPI, receive the games list and begin sorting them per user. This implementation shouldn't take very long.
+
+## WebSocket
+
+WS didn't take nearly as long as I thought it would, what took the longest was hostname issues when testing, and now I have to confirm that it will work with hostnames resolved from different IP addresses in a development environment. The animations for the chat messages also took a long time, but it looks really good now, and I'm very happy with it!

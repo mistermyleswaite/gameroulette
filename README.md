@@ -120,8 +120,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [X] **Backend listens for WebSocket connection** - Backend is modelled after Simon, relatively simple peerProxy object.
+- [X] **Frontend makes WebSocket connection** - Generates a connection with backend, displays success code in console when connection is successful
+- [X] **Data sent over WebSocket connection** - A message is sent containing the user's name and the name of the game. 
+- [X] **WebSocket data displayed** - A chat message appears on the bottom left with a message like: "<user> has sorted <game>!"
+- [X] **Application is fully functional** - Users can import games, sort them into lists, skip sorting, and clear the lists entirely.
+
+I would like to note that the web app isn't nearly robust as I hoped, and that's my fault for not planning ahead to put more time into the features. Even so, I felt really inspired to continue developing this webapp to learn more about the technologies involved, and learn to make a user friendly, robust web-app for game sorting.
