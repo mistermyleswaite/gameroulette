@@ -94,7 +94,7 @@ function Profile({ authState }) {
             <ul>
                 <li><p>Username: {localStorage.user} </p></li>
                 <li><p>SteamID64: {steamId} </p></li>
-                <li><p>Lists: <a href="lists.html">[Lists]</a>"</p></li>
+                <li><p>Lists: <a href="lists.jsx">[Lists]</a></p></li>
             </ul>
         </div>
         <div className="steam-import-section card p-3 mt-4">

@@ -20,9 +20,6 @@ let db;
 const app = express();
 const authCookieName = "token";
 
-// let users = [];
-// let userStates = [];
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('dist'));
@@ -172,42 +169,6 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'dist' });
 });
 
-// function updateUserStates(email, unsorted, sorted) {
-//   const index = userStates.findIndex((u) => u.email === email);
-  
-//   const newState = {
-//     email: email,
-//     unsorted: unsorted || [],
-//     sorted: sorted || { UPNX: [], ALPD: [], BKLG: [], PTOD: [] },
-//   };
-
-//   if (index !== -1) {
-//     userStates[index] = newState;
-//   } else {
-//     userStates.push(newState);
-//   }
-//   return newState;
-// }
-
-// async function createUser(email, password) {
-//   const passwordHash = await bcrypt.hash(password, 10);
-
-//   const user = {
-//     email: email,
-//     password: passwordHash,
-//     token: uuid.v4(),
-//   };
-//   users.push(user);
-
-//   return user;
-// }
-
-// async function findUser(field, value) {
-//   if (!value) return null;
-
-//   return users.find((u) => u[field] === value);
-// }
-
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
@@ -234,4 +195,8 @@ function connectToDatabase() {
 
 connectToDatabase();
 
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
 
+peerProxy(httpService);
