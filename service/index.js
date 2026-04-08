@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
@@ -23,7 +23,8 @@ const authCookieName = "token";
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -120,7 +121,6 @@ const verifyAuth = async (req, res, next) => {
   const user = await db.collection('users').findOne({ token: req.cookies[authCookieName] });
   if (user) {
     console.log("User found:", user.email);
-    localStorage.setItem('userName', user.email);
     req.user = user;
     next();
   } else {
@@ -167,17 +167,30 @@ app.use(function (err, req, res, next) {
 });
 
 // Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'dist' });
+app.use(function (err, req, res, next) {
+  console.error("!!! SERVER ERROR !!!", err); 
+  res.status(500).send({ type: err.name, message: err.message });
 });
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    secure: false,
+    secure: true,
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'strict',
   });
+}
+
+apiRouter.get('/user/me', verifyAuth, (req, res) => {
+  res.send({ username: req.user.email });
+});
+
+function startServer() {
+  const httpService = app.listen(port, () => {
+    console.log(`Server is holding the line on port ${port}`);
+  });
+
+  peerProxy(httpService);
 }
 
 function connectToDatabase() {
@@ -185,9 +198,7 @@ function connectToDatabase() {
     .then(() => {
       db = client.db('gamesort'); 
       console.log("Database initialized and ready!");
-      app.listen(port, () => {
-        console.log(`Server is holding the line on port ${port}`);
-      });
+      startServer();
     })
     .catch((err) => {
       console.error("Database connection failed AGAIN", err);
@@ -197,8 +208,3 @@ function connectToDatabase() {
 
 connectToDatabase();
 
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-peerProxy(httpService);

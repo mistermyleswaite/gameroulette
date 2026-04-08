@@ -48,7 +48,10 @@ function Profile({ authState }) {
         if (!steamId) return alert("please enter a SteamID64");
 
         try {
-            const response = await fetch(`/api/steam/test/${steamId}`);
+            const response = await fetch(`/api/steam/test/${steamId}`, {
+                method: 'GET',
+                credentials: 'include',
+            });
             const data = await response.json();
 
             if (data.success) {
