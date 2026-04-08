@@ -5,6 +5,7 @@ import { AuthState } from "../login/authState";
 function Sort({ authState }) {
   const navigate = useNavigate();
   const isLoaded = useRef(false);
+  const socketRef = useRef(null);
 
   const [unsortedGames, setUnsortedGames] = useState([]);
   const [currentGame, setCurrentGame] = useState(null);
@@ -15,7 +16,6 @@ function Sort({ authState }) {
     PTOD: [],
   });
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const spin = useCallback(
     (currentUnsorted) => {
@@ -30,6 +30,10 @@ function Sort({ authState }) {
     },
     [unsortedGames],
   );
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [messages, setMessages] = useState([]);
+
 
   useEffect(() => {
     if (
@@ -59,7 +63,42 @@ function Sort({ authState }) {
       }
     }
     loadInitialData();
-  }, [authState, navigate]);
+
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const hostname = window.location.host;
+    const newSocket = new WebSocket(`${protocol}://localhost:3000`);
+
+    newSocket.onopen = () => console.log("WebSocket connected to Gamesort");
+    newSocket.onmessage = async (event) => {
+        try {
+            const text = await event.data.text();
+            const data = JSON.parse(text);
+            
+            console.log("WebSocket Received:", data);
+
+            const newMessage = {
+                id: Date.now(),
+                text: `${data.user} sorted ${data.game}!`
+            }
+
+            setMessages(prev => [...prev, newMessage]);
+
+            setTimeout(() => {
+                setMessages(prev => prev.filter(m => m.id !== newMessage.id));
+            }, 4000);
+        } catch (err) {
+            console.log("WS Data:", event.data);
+        }
+    };
+
+    socketRef.current = newSocket;
+
+    return () => {
+        if (socketRef.current) {
+            socketRef.current.close();
+        }
+    };
+  }, [authState, navigate, spin]);
 
   function toggleCategory(listKey) {
     setSelectedCategories((prev) =>
@@ -69,7 +108,7 @@ function Sort({ authState }) {
     );
   }
 
-  async function sortGame(list) {
+  async function sortGame() {
     if (!currentGame || selectedCategories.length === 0) return;
 
     const taggedGame = {
@@ -86,6 +125,13 @@ function Sort({ authState }) {
 
     setUnsortedGames(nextUnsorted);
     setSortedGames(nextSorted);
+
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+        socketRef.current.send(JSON.stringify({
+            user: authState.userName || authState.email || 'A gamer',
+            game: currentGame.name
+        }));
+    }
 
     try {
       await fetch("/api/lists", {
@@ -106,6 +152,15 @@ function Sort({ authState }) {
 
   return (
     <main className="sort-page">
+      {/* WebSocket!! */}
+      <div className="chat-feed-container">
+        {messages.map((msg => (
+            <div key={msg.id} className="chat-bubble">
+                {msg.text}
+            </div>
+        )))}
+      </div>
+
       <div className="sort-header">
         <h2>Sort Your Library</h2>
         <span className="badge-remaining">
@@ -133,7 +188,7 @@ function Sort({ authState }) {
               <button
                 key={cat}
                 onClick={() => toggleCategory(cat)}
-                className={`btn-sort ${selectedCategories.includes(cat) ? "active " + cat : ""}`}
+                className={`btn-glass btn-sort ${selectedCategories.includes(cat) ? "active " + cat : ""}`}
               >
                 {cat === "UPNX" && "Up Next"}
                 {cat === "ALPD" && "Already Played"}
@@ -144,19 +199,18 @@ function Sort({ authState }) {
           </div>
           <div className="action-buttons">
             <button onClick={() => spin()} className="btn-glass">
-              Skip / Spin
+              Skip
             </button>
             <button
               onClick={sortGame}
-              className="btn-confirm"
+              className="btn-confirm btn-glass"
               disabled={selectedCategories.length === 0}
             >
-              Confirm & Next
+              Sort
             </button>
           </div>
       </div>
     </div>
-      <div className="websocket">WEBSOCKETPLACEHOLDER</div>
     </main>
   );
 }

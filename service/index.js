@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const config = require('./dbConfig.json');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { peerProxy } = require('./peerProxy.js')
 const uri = `mongodb://mongo:${config.password}@ac-eeex6zp-shard-00-00.1q1lgfr.mongodb.net:27017,ac-eeex6zp-shard-00-01.1q1lgfr.mongodb.net:27017,ac-eeex6zp-shard-00-02.1q1lgfr.mongodb.net:27017/?ssl=true&replicaSet=atlas-t1g0oh-shard-0&authSource=admin&appName=Cluster0`;
 const client = new MongoClient(uri, {
   serverApi: {
